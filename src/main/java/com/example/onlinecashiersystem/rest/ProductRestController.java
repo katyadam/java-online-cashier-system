@@ -31,12 +31,17 @@ public class ProductRestController {
     }
 
     @PostMapping
-    public ResponseEntity<Product> createProduct(@RequestBody ProductDto productDto) {
+    public ResponseEntity<Product> create(@RequestBody ProductDto productDto) {
         return ResponseEntity.ok(productFacade.createProduct(productDto));
     }
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody ProductDto productDto) {
+    public ResponseEntity<Product> update(@PathVariable Long id, @RequestBody ProductDto productDto) {
         return ResponseEntity.ok(productFacade.updateProduct(id, productDto));
+    }
+
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<Product> delete(@PathVariable("id") Long id) {
+        return ResponseEntity.ok(productFacade.deleteProduct(id));
     }
 }

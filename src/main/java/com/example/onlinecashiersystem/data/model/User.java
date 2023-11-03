@@ -27,10 +27,10 @@ public class User implements Serializable {
     @Column(name = "password_hash")
     private String passwordHash;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<ProductPlane> productPlaneSet;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Category> categorySet;
 
     public Long getId() {

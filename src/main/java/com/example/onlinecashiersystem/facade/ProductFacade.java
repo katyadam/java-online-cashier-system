@@ -37,4 +37,8 @@ public class ProductFacade {
     public Product updateProduct(Long id, ProductDto productDto) {
         return productService.updateProduct(id, productDto);
     }
+
+    public Product deleteProduct(Long id) {
+        return productService.deleteProduct(id);
+    }
 }

@@ -49,4 +49,12 @@ public class UserService {
         return toUpdate;
     }
 
+    @Transactional
+    public User deleteUser(Long id) {
+        User toDelete = findById(id);
+        userRepository.delete(toDelete);
+
+        return toDelete;
+    }
+
 }

@@ -19,15 +19,20 @@ public class CategoryRestController {
     }
 
     @PostMapping
-    public ResponseEntity<Category> createCategory(@RequestBody CategoryDto categoryDto) {
+    public ResponseEntity<Category> create(@RequestBody CategoryDto categoryDto) {
         return ResponseEntity.ok(categoryService.createCategory(categoryDto));
     }
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<Category> updateCategory(
+    public ResponseEntity<Category> update(
             @PathVariable("id") Long id,
             @RequestBody CategoryDto categoryDto
     ) {
         return ResponseEntity.ok(categoryService.updateCategory(id, categoryDto));
+    }
+
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<Category> delete(@PathVariable("id") Long id) {
+        return ResponseEntity.ok(categoryService.deleteCategory(id));
     }
 }

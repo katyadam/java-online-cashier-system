@@ -18,11 +18,11 @@ public class Product implements Serializable {
     private String name;
 
     @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "fk_product_plane_id", referencedColumnName = "product_plane_id")
     private ProductPlane productPlane;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "fk_category_id", referencedColumnName = "category_id")
     private Category category;
 

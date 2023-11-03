@@ -38,8 +38,13 @@ public class UserRestController {
     }
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable("id") Long id, @RequestBody UserDto userDto) {
+    public ResponseEntity<User> update(@PathVariable("id") Long id, @RequestBody UserDto userDto) {
         return ResponseEntity.ok(userService.updateUser(id, userDto));
+    }
+
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<User> delete(@PathVariable("id") Long id) {
+        return ResponseEntity.ok(userService.deleteUser(id));
     }
 
 }

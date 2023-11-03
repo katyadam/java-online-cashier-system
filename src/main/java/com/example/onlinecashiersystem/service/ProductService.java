@@ -60,4 +60,12 @@ public class ProductService {
         return toUpdate;
     }
 
+    @Transactional
+    public Product deleteProduct(Long id) {
+        Product toDelete = findById(id);
+        productRepository.delete(toDelete);
+
+        return toDelete;
+    }
+
 }

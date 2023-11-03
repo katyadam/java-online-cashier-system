@@ -51,4 +51,9 @@ public class ProductPlaneRestController {
         return ResponseEntity.ok(productPlaneService.updateProductPlane(id, productPlaneDto));
     }
 
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<ProductPlane> delete(@PathVariable("id") Long id) {
+        return ResponseEntity.ok(productPlaneService.deleteProductPlane(id));
+    }
+
 }

@@ -45,4 +45,12 @@ public class CategoryService {
         categoryRepository.save(toUpdate);
         return toUpdate;
     }
+
+    @Transactional
+    public Category deleteCategory(Long id) {
+        Category toDelete = findById(id);
+        categoryRepository.delete(toDelete);
+
+        return toDelete;
+    }
 }

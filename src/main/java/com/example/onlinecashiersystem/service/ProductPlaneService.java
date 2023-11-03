@@ -65,4 +65,12 @@ public class ProductPlaneService {
         productPlaneRepository.save(toUpdate);
         return toUpdate;
     }
+
+    @Transactional
+    public ProductPlane deleteProductPlane(Long id) {
+        ProductPlane toDelete = findById(id);
+        productPlaneRepository.delete(toDelete);
+
+        return toDelete;
+    }
 }

@@ -1,6 +1,5 @@
 package com.example.onlinecashiersystem.data.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -54,7 +53,6 @@ public class User implements Serializable {
         return passwordHash;
     }
 
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -75,20 +73,6 @@ public class User implements Serializable {
         this.passwordHash = passwordHash;
     }
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(email, user.email);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(email);
-    }
-
     public Set<ProductPlane> getProductPlaneSet() {
         return productPlaneSet;
     }
@@ -103,5 +87,18 @@ public class User implements Serializable {
 
     public void setCategorySet(Set<Category> categorySet) {
         this.categorySet = categorySet;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(email, user.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(email);
     }
 }

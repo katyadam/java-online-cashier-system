@@ -10,10 +10,8 @@ import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-
     @NonNull
     Optional<User> findById(
             @Param("user_id") @NonNull Long id
     );
-
 }

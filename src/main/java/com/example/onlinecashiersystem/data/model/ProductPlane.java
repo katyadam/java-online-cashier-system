@@ -10,7 +10,6 @@ import java.util.Set;
 @Table(name = "product_plane", schema = "public")
 public class ProductPlane implements Serializable {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_plane_id")

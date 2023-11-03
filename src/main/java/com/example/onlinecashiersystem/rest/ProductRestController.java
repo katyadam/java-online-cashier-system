@@ -1,6 +1,5 @@
 package com.example.onlinecashiersystem.rest;
 
-import com.example.onlinecashiersystem.api.ProductDto;
 import com.example.onlinecashiersystem.data.model.Product;
 import com.example.onlinecashiersystem.facade.ProductFacade;
 import org.springframework.beans.factory.annotation.Autowired;

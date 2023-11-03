@@ -14,5 +14,4 @@ public interface ProductPlaneRepository extends JpaRepository<ProductPlane, Long
     Optional<ProductPlane> findById(
             @Param("product_plane_id") @NonNull Long id
     );
-
 }

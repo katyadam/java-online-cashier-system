@@ -1,8 +1,6 @@
 package com.example.onlinecashiersystem.facade;
 
-import com.example.onlinecashiersystem.api.ProductDto;
 import com.example.onlinecashiersystem.data.model.Product;
-import com.example.onlinecashiersystem.mapper.ProductMapper;
 import com.example.onlinecashiersystem.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -30,6 +28,4 @@ public class ProductFacade {
     public Page<Product> findAll(Pageable pageable) {
         return productService.findAll(pageable);
     }
-
-
 }

@@ -22,16 +22,27 @@ public class CategoryService {
     }
 
     @Transactional(readOnly = true)
-    public Category findCategory(Long id) {
+    public Category findById(Long id) {
         return categoryRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Category with id: " + id + " was not found!"));
     }
 
+    @Transactional
     public Category createCategory(CategoryDto categoryDto) {
         Category newCategory = new Category();
         newCategory.setName(categoryDto.name());
         newCategory.setUser(userService.findById(categoryDto.userId()));
 
         return categoryRepository.save(newCategory);
+    }
+
+    @Transactional
+    public Category updateCategory(Long id, CategoryDto categoryDto) {
+        Category toUpdate = findById(id);
+        toUpdate.setName(categoryDto.name());
+        toUpdate.setUser(userService.findById(categoryDto.userId()));
+
+        categoryRepository.save(toUpdate);
+        return toUpdate;
     }
 }

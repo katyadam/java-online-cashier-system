@@ -1,15 +1,13 @@
 package com.example.onlinecashiersystem.rest;
 
+import com.example.onlinecashiersystem.api.UserDto;
 import com.example.onlinecashiersystem.data.model.Category;
 import com.example.onlinecashiersystem.data.model.ProductPlane;
 import com.example.onlinecashiersystem.data.model.User;
 import com.example.onlinecashiersystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 
@@ -39,5 +37,9 @@ public class UserRestController {
         return ResponseEntity.ok(userService.findCategories(id));
     }
 
+    @PutMapping(path = "/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable("id") Long id, @RequestBody UserDto userDto) {
+        return ResponseEntity.ok(userService.updateUser(id, userDto));
+    }
 
 }

@@ -1,5 +1,6 @@
 package com.example.onlinecashiersystem.service;
 
+import com.example.onlinecashiersystem.api.UserDto;
 import com.example.onlinecashiersystem.data.model.Category;
 import com.example.onlinecashiersystem.data.model.ProductPlane;
 import com.example.onlinecashiersystem.data.model.User;
@@ -37,5 +38,15 @@ public class UserService {
         return findById(id).getCategorySet();
     }
 
+    @Transactional
+    public User updateUser(Long id, UserDto userDto) {
+        User toUpdate = findById(id);
+        toUpdate.setGivenName(userDto.givenName());
+        toUpdate.setFamilyName(userDto.familyName());
+        toUpdate.setEmail(userDto.email());
+
+        userRepository.save(toUpdate);
+        return toUpdate;
+    }
 
 }

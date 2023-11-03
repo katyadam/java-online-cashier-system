@@ -43,4 +43,12 @@ public class ProductPlaneRestController {
         return ResponseEntity.ok(productPlaneService.createProductPlane(productPlaneDto));
     }
 
+    @PutMapping(path = "/{id}")
+    public ResponseEntity<ProductPlane> update(
+            @PathVariable("id") Long id,
+            @RequestBody ProductPlaneDto productPlaneDto
+    ) {
+        return ResponseEntity.ok(productPlaneService.updateProductPlane(id, productPlaneDto));
+    }
+
 }

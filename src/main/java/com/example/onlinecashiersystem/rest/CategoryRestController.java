@@ -5,10 +5,7 @@ import com.example.onlinecashiersystem.data.model.Category;
 import com.example.onlinecashiersystem.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "categories")
@@ -24,5 +21,13 @@ public class CategoryRestController {
     @PostMapping
     public ResponseEntity<Category> createCategory(@RequestBody CategoryDto categoryDto) {
         return ResponseEntity.ok(categoryService.createCategory(categoryDto));
+    }
+
+    @PutMapping(path = "/{id}")
+    public ResponseEntity<Category> updateCategory(
+            @PathVariable("id") Long id,
+            @RequestBody CategoryDto categoryDto
+    ) {
+        return ResponseEntity.ok(categoryService.updateCategory(id, categoryDto));
     }
 }

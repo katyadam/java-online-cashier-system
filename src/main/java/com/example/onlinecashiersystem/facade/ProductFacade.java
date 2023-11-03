@@ -33,4 +33,8 @@ public class ProductFacade {
     public Product createProduct(ProductDto productDto) {
         return productService.createProduct(productDto);
     }
+
+    public Product updateProduct(Long id, ProductDto productDto) {
+        return productService.updateProduct(id, productDto);
+    }
 }

@@ -45,6 +45,7 @@ public class ProductPlaneService {
         return productPlaneRepository.findAll(pageable);
     }
 
+    @Transactional
     public ProductPlane createProductPlane(ProductPlaneDto productPlaneDto) {
         ProductPlane newProductPlane = new ProductPlane();
         newProductPlane.setName(productPlaneDto.name());
@@ -53,5 +54,15 @@ public class ProductPlaneService {
 
         productPlaneRepository.save(newProductPlane);
         return newProductPlane;
+    }
+
+    @Transactional
+    public ProductPlane updateProductPlane(Long id, ProductPlaneDto productPlaneDto) {
+        ProductPlane toUpdate = findById(id);
+        toUpdate.setName(productPlaneDto.name());
+        toUpdate.setUser(userService.findById(productPlaneDto.userId()));
+
+        productPlaneRepository.save(toUpdate);
+        return toUpdate;
     }
 }

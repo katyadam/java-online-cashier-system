@@ -39,14 +39,25 @@ public class ProductService {
         return productRepository.findAll(pageable);
     }
 
+    @Transactional
     public Product createProduct(ProductDto productDto) {
         Product newProduct = new Product();
         newProduct.setName(productDto.name());
         newProduct.setProductPlane(productPlaneService.findById(productDto.productPlaneId()));
-        newProduct.setCategory(categoryService.findCategory(productDto.categoryId()));
+        newProduct.setCategory(categoryService.findById(productDto.categoryId()));
 
         productRepository.save(newProduct);
         return newProduct;
+    }
+
+    @Transactional
+    public Product updateProduct(Long id, ProductDto productDto) {
+        Product toUpdate = findById(id);
+        toUpdate.setName(productDto.name());
+        toUpdate.setCategory(categoryService.findById(productDto.categoryId()));
+
+        productRepository.save(toUpdate);
+        return toUpdate;
     }
 
 }

@@ -1,5 +1,6 @@
 package com.example.onlinecashiersystem.service;
 
+import com.example.onlinecashiersystem.data.model.Product;
 import com.example.onlinecashiersystem.data.model.ProductPlane;
 import com.example.onlinecashiersystem.data.repository.ProductPlaneRepository;
 import com.example.onlinecashiersystem.exceptions.ResourceNotFoundException;
@@ -9,7 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class ProductPlaneService {
@@ -25,6 +26,11 @@ public class ProductPlaneService {
     public ProductPlane findById(Long id) {
         return productPlaneRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("ProductPlane with id " + id + " was not found!"));
+    }
+
+    @Transactional(readOnly = true)
+    public Set<Product> findProducts(Long id) {
+        return findById(id).getProductSet();
     }
 
     @Transactional(readOnly = true)

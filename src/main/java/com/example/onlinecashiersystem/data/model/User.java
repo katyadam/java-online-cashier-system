@@ -28,9 +28,11 @@ public class User implements Serializable {
     @Column(name = "password_hash")
     private String passwordHash;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private Set<ProductPlane> productPlaneSet;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Category> categorySet;
 
     public Long getId() {
         return id;
@@ -93,5 +95,13 @@ public class User implements Serializable {
 
     public void setProductPlaneSet(Set<ProductPlane> productPlaneSet) {
         this.productPlaneSet = productPlaneSet;
+    }
+
+    public Set<Category> getCategorySet() {
+        return categorySet;
+    }
+
+    public void setCategorySet(Set<Category> categorySet) {
+        this.categorySet = categorySet;
     }
 }

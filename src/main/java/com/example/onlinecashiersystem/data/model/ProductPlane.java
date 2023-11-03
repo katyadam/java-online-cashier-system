@@ -19,11 +19,11 @@ public class ProductPlane implements Serializable {
     @Column(name = "name")
     private String name;
 
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_user_id", referencedColumnName = "user_id")
     private User user;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "productPlane")
     private Set<Product> productSet;
 

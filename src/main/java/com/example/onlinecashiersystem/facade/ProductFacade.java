@@ -1,5 +1,6 @@
 package com.example.onlinecashiersystem.facade;
 
+import com.example.onlinecashiersystem.api.ProductDto;
 import com.example.onlinecashiersystem.data.model.Product;
 import com.example.onlinecashiersystem.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +28,9 @@ public class ProductFacade {
     @Transactional(readOnly = true)
     public Page<Product> findAll(Pageable pageable) {
         return productService.findAll(pageable);
+    }
+
+    public Product createProduct(ProductDto productDto) {
+        return productService.createProduct(productDto);
     }
 }

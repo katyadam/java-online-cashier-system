@@ -1,5 +1,6 @@
 package com.example.onlinecashiersystem.rest;
 
+import com.example.onlinecashiersystem.api.ProductPlaneDto;
 import com.example.onlinecashiersystem.data.model.Product;
 import com.example.onlinecashiersystem.data.model.ProductPlane;
 import com.example.onlinecashiersystem.service.ProductPlaneService;
@@ -7,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 
@@ -39,4 +37,10 @@ public class ProductPlaneRestController {
     public Page<ProductPlane> findAll(Pageable pageable) {
         return productPlaneService.findAll(pageable);
     }
+
+    @PostMapping
+    public ResponseEntity<ProductPlane> create(@RequestBody ProductPlaneDto productPlaneDto) {
+        return ResponseEntity.ok(productPlaneService.createProductPlane(productPlaneDto));
+    }
+
 }

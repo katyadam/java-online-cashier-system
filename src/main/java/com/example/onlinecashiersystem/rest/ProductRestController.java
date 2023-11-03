@@ -1,15 +1,13 @@
 package com.example.onlinecashiersystem.rest;
 
+import com.example.onlinecashiersystem.api.ProductDto;
 import com.example.onlinecashiersystem.data.model.Product;
 import com.example.onlinecashiersystem.facade.ProductFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/products")
@@ -30,5 +28,10 @@ public class ProductRestController {
     @GetMapping
     public Page<Product> findAll(Pageable pageable) {
         return productFacade.findAll(pageable);
+    }
+
+    @PostMapping
+    public ResponseEntity<Product> createProduct(@RequestBody ProductDto productDto) {
+        return ResponseEntity.ok(productFacade.createProduct(productDto));
     }
 }

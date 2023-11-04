@@ -2,7 +2,7 @@ package com.example.onlinecashiersystem.rest;
 
 import com.example.onlinecashiersystem.api.CategoryDto;
 import com.example.onlinecashiersystem.data.model.Category;
-import com.example.onlinecashiersystem.service.CategoryService;
+import com.example.onlinecashiersystem.service.api.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

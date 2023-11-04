@@ -1,4 +1,4 @@
-package com.example.onlinecashiersystem.service;
+package com.example.onlinecashiersystem.service.api;
 
 import com.example.onlinecashiersystem.api.CategoryDto;
 import com.example.onlinecashiersystem.data.model.Category;

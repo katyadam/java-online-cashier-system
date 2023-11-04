@@ -2,7 +2,7 @@ package com.example.onlinecashiersystem.rest;
 
 import com.example.onlinecashiersystem.api.ProductDto;
 import com.example.onlinecashiersystem.data.model.Product;
-import com.example.onlinecashiersystem.service.ProductService;
+import com.example.onlinecashiersystem.service.api.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

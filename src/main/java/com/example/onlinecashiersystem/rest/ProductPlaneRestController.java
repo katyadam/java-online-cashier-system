@@ -4,11 +4,13 @@ import com.example.onlinecashiersystem.api.ProductPlaneDto;
 import com.example.onlinecashiersystem.data.model.Product;
 import com.example.onlinecashiersystem.data.model.ProductPlane;
 import com.example.onlinecashiersystem.service.api.ProductPlaneService;
+import com.example.onlinecashiersystem.service.dataimport.ProductPlaneImportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Set;
 
@@ -17,10 +19,15 @@ import java.util.Set;
 public class ProductPlaneRestController {
 
     private final ProductPlaneService productPlaneService;
+    private final ProductPlaneImportService productPlaneImportService;
 
     @Autowired
-    public ProductPlaneRestController(ProductPlaneService productPlaneService) {
+    public ProductPlaneRestController(
+            ProductPlaneService productPlaneService,
+            ProductPlaneImportService productPlaneImportService
+    ) {
         this.productPlaneService = productPlaneService;
+        this.productPlaneImportService = productPlaneImportService;
     }
 
     @GetMapping(path = "/{id}")
@@ -56,4 +63,12 @@ public class ProductPlaneRestController {
         return ResponseEntity.ok(productPlaneService.deleteProductPlane(id));
     }
 
+    @PostMapping(path = "/upload/{id}")
+    public ResponseEntity<String> upload(
+            @PathVariable("id") Long id,
+            @RequestParam("file") MultipartFile file
+    ) {
+        productPlaneImportService.importData(id, file);
+        return ResponseEntity.ok("The file has uploaded successfully!");
+    }
 }

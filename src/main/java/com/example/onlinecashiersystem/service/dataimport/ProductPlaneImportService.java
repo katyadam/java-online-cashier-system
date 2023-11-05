@@ -3,6 +3,10 @@ package com.example.onlinecashiersystem.service.dataimport;
 import com.example.onlinecashiersystem.data.repository.ProductPlaneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Service
 public class ProductPlaneImportService {
@@ -19,13 +23,17 @@ public class ProductPlaneImportService {
         this.productPlaneParser = productPlaneParser;
     }
 
-    public void saveImportedData(Long id, byte[] bytes) {
-        productPlaneParser.getParsedCollection(bytes).forEach(
-                parsedProductPlane -> {
-                    parsedProductPlane.setId(id);
-                    productPlaneRepository.save(parsedProductPlane);
-                }
-        );
-
+    @Transactional
+    public void importData(Long id, MultipartFile file) {
+        try {
+            productPlaneParser.getParsedCollection(file.getBytes()).forEach(
+                    parsedProductPlane -> {
+                        parsedProductPlane.setId(id);
+                        productPlaneRepository.save(parsedProductPlane);
+                    }
+            );
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

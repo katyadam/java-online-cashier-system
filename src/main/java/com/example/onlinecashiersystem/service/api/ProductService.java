@@ -40,6 +40,7 @@ public class ProductService {
     public Product createProduct(ProductDto productDto) {
         Product newProduct = new Product();
         newProduct.setName(productDto.name());
+        newProduct.setPrice(productDto.price());
         newProduct.setProductPlane(productPlaneService.findById(productDto.productPlaneId()));
 
         productRepository.save(newProduct);
@@ -50,6 +51,7 @@ public class ProductService {
     public Product updateProduct(Long id, ProductDto productDto) {
         Product toUpdate = findById(id);
         toUpdate.setName(productDto.name());
+        toUpdate.setPrice(productDto.price());
 
         productRepository.save(toUpdate);
         return toUpdate;

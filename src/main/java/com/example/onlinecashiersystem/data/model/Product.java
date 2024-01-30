@@ -17,6 +17,9 @@ public class Product implements Serializable {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "price")
+    private int price;
+
     @JsonIgnore
     @ManyToOne()
     @JoinColumn(name = "fk_product_plane_id", referencedColumnName = "product_plane_id")
@@ -44,5 +47,13 @@ public class Product implements Serializable {
 
     public void setProductPlane(ProductPlane productPlane) {
         this.productPlane = productPlane;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }

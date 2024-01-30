@@ -22,10 +22,6 @@ public class Product implements Serializable {
     @JoinColumn(name = "fk_product_plane_id", referencedColumnName = "product_plane_id")
     private ProductPlane productPlane;
 
-    @ManyToOne()
-    @JoinColumn(name = "fk_category_id", referencedColumnName = "category_id")
-    private Category category;
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -48,13 +44,5 @@ public class Product implements Serializable {
 
     public void setProductPlane(ProductPlane productPlane) {
         this.productPlane = productPlane;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
     }
 }

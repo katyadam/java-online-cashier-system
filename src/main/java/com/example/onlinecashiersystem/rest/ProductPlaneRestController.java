@@ -4,7 +4,7 @@ import com.example.onlinecashiersystem.api.ProductPlaneDto;
 import com.example.onlinecashiersystem.data.model.Product;
 import com.example.onlinecashiersystem.data.model.ProductPlane;
 import com.example.onlinecashiersystem.service.api.ProductPlaneService;
-import com.example.onlinecashiersystem.service.dataimport.ProductPlaneImportService;
+import com.example.onlinecashiersystem.service.dataimport.service.ProductPlaneImportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -15,23 +15,20 @@ public class ProductService {
 
     private final ProductRepository productRepository;
     private final ProductPlaneService productPlaneService;
-    private final CategoryService categoryService;
 
     @Autowired
     public ProductService(
             ProductRepository productRepository,
-            ProductPlaneService productPlaneService,
-            CategoryService categoryService
+            ProductPlaneService productPlaneService
     ) {
         this.productRepository = productRepository;
         this.productPlaneService = productPlaneService;
-        this.categoryService = categoryService;
     }
 
     @Transactional(readOnly = true)
     public Product findById(Long id) {
         return productRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Product with userId: " + id + " was not found!"));
+                .orElseThrow(() -> new ResourceNotFoundException("Product with id: " + id + " was not found!"));
     }
 
     @Transactional(readOnly = true)
@@ -44,7 +41,6 @@ public class ProductService {
         Product newProduct = new Product();
         newProduct.setName(productDto.name());
         newProduct.setProductPlane(productPlaneService.findById(productDto.productPlaneId()));
-        newProduct.setCategory(categoryService.findById(productDto.categoryId()));
 
         productRepository.save(newProduct);
         return newProduct;
@@ -54,7 +50,6 @@ public class ProductService {
     public Product updateProduct(Long id, ProductDto productDto) {
         Product toUpdate = findById(id);
         toUpdate.setName(productDto.name());
-        toUpdate.setCategory(categoryService.findById(productDto.categoryId()));
 
         productRepository.save(toUpdate);
         return toUpdate;
@@ -67,5 +62,4 @@ public class ProductService {
 
         return toDelete;
     }
-
 }

@@ -1,7 +1,6 @@
 package com.example.onlinecashiersystem.rest;
 
 import com.example.onlinecashiersystem.api.UserDto;
-import com.example.onlinecashiersystem.data.model.Category;
 import com.example.onlinecashiersystem.data.model.ProductPlane;
 import com.example.onlinecashiersystem.data.model.User;
 import com.example.onlinecashiersystem.service.api.UserService;
@@ -30,11 +29,6 @@ public class UserRestController {
     @GetMapping(path = "/{id}/product-planes")
     public ResponseEntity<Set<ProductPlane>> findProductPlanes(@PathVariable("id") Long id) {
         return ResponseEntity.ok(userService.findProductPlanes(id));
-    }
-
-    @GetMapping(path = "/{id}/categories")
-    public ResponseEntity<Set<Category>> findCategories(@PathVariable("id") Long id) {
-        return ResponseEntity.ok(userService.findCategories(id));
     }
 
     @PutMapping(path = "/{id}")

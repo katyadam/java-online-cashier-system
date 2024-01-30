@@ -1,7 +1,6 @@
 package com.example.onlinecashiersystem.service.api;
 
 import com.example.onlinecashiersystem.api.UserDto;
-import com.example.onlinecashiersystem.data.model.Category;
 import com.example.onlinecashiersystem.data.model.ProductPlane;
 import com.example.onlinecashiersystem.data.model.User;
 import com.example.onlinecashiersystem.data.repository.UserRepository;
@@ -31,11 +30,6 @@ public class UserService {
     @Transactional(readOnly = true)
     public Set<ProductPlane> findProductPlanes(Long id) {
         return findById(id).getProductPlaneSet();
-    }
-
-    @Transactional(readOnly = true)
-    public Set<Category> findCategories(Long id) {
-        return findById(id).getCategorySet();
     }
 
     @Transactional

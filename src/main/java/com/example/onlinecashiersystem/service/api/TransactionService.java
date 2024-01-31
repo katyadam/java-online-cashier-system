@@ -1,7 +1,6 @@
 package com.example.onlinecashiersystem.service.api;
 
 import com.example.onlinecashiersystem.api.TransactionDto;
-import com.example.onlinecashiersystem.data.model.Product;
 import com.example.onlinecashiersystem.data.model.Transaction;
 import com.example.onlinecashiersystem.data.repository.TransactionRepository;
 import com.example.onlinecashiersystem.exceptions.ResourceNotFoundException;
@@ -14,15 +13,14 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class TransactionService {
     private final TransactionRepository transactionRepository;
-    private final ProductService productService;
+    private final UserService userService;
 
     @Autowired
     public TransactionService(
             TransactionRepository transactionRepository,
-            ProductService productService
-    ) {
+            UserService userService) {
         this.transactionRepository = transactionRepository;
-        this.productService = productService;
+        this.userService = userService;
     }
 
     @Transactional(readOnly = true)
@@ -39,8 +37,8 @@ public class TransactionService {
     @Transactional
     public Transaction createTransaction(TransactionDto transactionDto) {
         Transaction newTransaction = new Transaction();
-        newTransaction.setAmount(transactionDto.amount());
-        newTransaction.setProduct(productService.findById(transactionDto.productId()));
+        newTransaction.setRecord(transactionDto.record());
+        newTransaction.setUser(userService.findById(transactionDto.userId()));
 
         transactionRepository.save(newTransaction);
         return newTransaction;
@@ -49,7 +47,7 @@ public class TransactionService {
     @Transactional
     public Transaction updateTransaction(Long id, TransactionDto transactionDto) {
         Transaction toUpdate = findById(id);
-        toUpdate.setAmount(transactionDto.amount());
+        toUpdate.setRecord(transactionDto.record());
 
         transactionRepository.save(toUpdate);
         return toUpdate;

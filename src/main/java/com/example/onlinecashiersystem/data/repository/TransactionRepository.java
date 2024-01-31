@@ -12,6 +12,6 @@ import java.util.Optional;
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
     @NonNull
     Optional<Transaction> findById(
-            @Param("product_id") @NonNull Long id
+            @Param("transaction_id") @NonNull Long id
     );
 }

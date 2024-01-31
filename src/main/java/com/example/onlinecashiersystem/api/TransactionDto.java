@@ -1,7 +1,8 @@
 package com.example.onlinecashiersystem.api;
 
+
 public record TransactionDto(
-        int amount,
-        Long productId
+        String record,
+        Long userId
 ) {
 }

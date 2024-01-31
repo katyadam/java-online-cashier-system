@@ -10,6 +10,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
 @Service
 public class TransactionService {
     private final TransactionRepository transactionRepository;
@@ -39,7 +42,7 @@ public class TransactionService {
         Transaction newTransaction = new Transaction();
         newTransaction.setRecord(transactionDto.record());
         newTransaction.setUser(userService.findById(transactionDto.userId()));
-
+        newTransaction.setCreationTime(new Timestamp(System.currentTimeMillis()));
         transactionRepository.save(newTransaction);
         return newTransaction;
     }

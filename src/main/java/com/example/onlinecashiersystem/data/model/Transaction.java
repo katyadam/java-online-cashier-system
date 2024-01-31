@@ -1,13 +1,12 @@
 package com.example.onlinecashiersystem.data.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.Map;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "transaction", schema = "public")
@@ -22,6 +21,9 @@ public class Transaction implements Serializable {
 
     @Column(name = "record")
     private String record;
+
+    @Column(name = "creation_time")
+    private Timestamp creationTime;
 
     @JsonIgnore
     @ManyToOne()
@@ -51,5 +53,13 @@ public class Transaction implements Serializable {
 
     public void setRecord(String record) {
         this.record = record;
+    }
+
+    public Timestamp getCreationTime() {
+        return creationTime;
+    }
+
+    public void setCreationTime(Timestamp creationTime) {
+        this.creationTime = creationTime;
     }
 }

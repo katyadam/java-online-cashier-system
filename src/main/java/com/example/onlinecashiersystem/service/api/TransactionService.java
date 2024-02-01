@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
 @Service
 public class TransactionService {
@@ -43,6 +42,7 @@ public class TransactionService {
         newTransaction.setRecord(transactionDto.record());
         newTransaction.setUser(userService.findById(transactionDto.userId()));
         newTransaction.setCreationTime(new Timestamp(System.currentTimeMillis()));
+
         transactionRepository.save(newTransaction);
         return newTransaction;
     }

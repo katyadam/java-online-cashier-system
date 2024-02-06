@@ -42,6 +42,7 @@ public class ProductService {
         newProduct.setName(productDto.name());
         newProduct.setPrice(productDto.price());
         newProduct.setProductPlane(productPlaneService.findById(productDto.productPlaneId()));
+        newProduct.setCurrency(productDto.currency());
 
         productRepository.save(newProduct);
         return newProduct;
@@ -52,6 +53,7 @@ public class ProductService {
         Product toUpdate = findById(id);
         toUpdate.setName(productDto.name());
         toUpdate.setPrice(productDto.price());
+        toUpdate.setCurrency(productDto.currency());
 
         productRepository.save(toUpdate);
         return toUpdate;

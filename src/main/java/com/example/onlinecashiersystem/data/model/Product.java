@@ -20,6 +20,9 @@ public class Product implements Serializable {
     @Column(name = "price")
     private int price;
 
+    @Column(name = "currency")
+    private String currency;
+
     @JsonIgnore
     @ManyToOne()
     @JoinColumn(name = "fk_product_plane_id", referencedColumnName = "product_plane_id")
@@ -55,5 +58,13 @@ public class Product implements Serializable {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
     }
 }

@@ -73,4 +73,9 @@ public class ProductPlaneService {
 
         return toDelete;
     }
+
+    @Transactional
+    public void deleteAllProductPlanes() {
+        productPlaneRepository.deleteAll();
+    }
 }

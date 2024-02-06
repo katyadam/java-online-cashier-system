@@ -63,4 +63,9 @@ public class TransactionService {
 
         return toDelete;
     }
+
+    @Transactional
+    public void deleteAllTransactions() {
+        transactionRepository.deleteAll();
+    }
 }

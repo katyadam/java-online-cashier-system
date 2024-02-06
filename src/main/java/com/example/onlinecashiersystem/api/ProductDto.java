@@ -5,5 +5,6 @@ public record ProductDto(
         int price,
         String currency,
         Long productPlaneId
+        
 ) {
 }

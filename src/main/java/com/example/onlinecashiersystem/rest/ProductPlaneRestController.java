@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.Set;
 
 @RestController
-@RequestMapping(path = "product-planes")
+@RequestMapping(path = "/product-planes")
 public class ProductPlaneRestController {
 
     private final ProductPlaneService productPlaneService;

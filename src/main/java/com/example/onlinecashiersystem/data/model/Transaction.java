@@ -1,5 +1,6 @@
 package com.example.onlinecashiersystem.data.model;
 
+import com.example.onlinecashiersystem.data.model.auth.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 

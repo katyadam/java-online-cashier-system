@@ -2,6 +2,7 @@ package com.example.onlinecashiersystem.service.api;
 
 import com.example.onlinecashiersystem.api.UserDto;
 import com.example.onlinecashiersystem.data.model.ProductPlane;
+import com.example.onlinecashiersystem.data.model.Transaction;
 import com.example.onlinecashiersystem.data.model.auth.User;
 import com.example.onlinecashiersystem.data.repository.UserRepository;
 import com.example.onlinecashiersystem.exceptions.ResourceNotFoundException;
@@ -9,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Comparator;
 import java.util.Optional;
 import java.util.Set;
+import java.util.TreeSet;
 
 @Service
 public class UserService {
@@ -36,6 +39,13 @@ public class UserService {
     @Transactional(readOnly = true)
     public Set<ProductPlane> findProductPlanes(Long id) {
         return findById(id).getProductPlaneSet();
+    }
+
+    @Transactional(readOnly = true)
+    public TreeSet<Transaction> findTransactions(Long id) {
+        TreeSet<Transaction> transactions = new TreeSet<>(Comparator.comparing(Transaction::getCreationTime).reversed());
+        transactions.addAll(findById(id).getTransactions());
+        return transactions;
     }
 
     @Transactional

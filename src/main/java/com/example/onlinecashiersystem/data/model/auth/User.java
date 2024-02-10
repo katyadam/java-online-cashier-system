@@ -1,50 +1,56 @@
 package com.example.onlinecashiersystem.data.model.auth;
 
 import com.example.onlinecashiersystem.data.model.ProductPlane;
+import com.example.onlinecashiersystem.data.model.Transaction;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "user", schema = "public")
-@Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class User implements UserDetails {
 
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Long id;
 
+    @Getter
     @Column(name = "given_name")
     private String givenName;
 
+    @Getter
     @Column(name = "family_name")
     private String familyName;
 
+    @Getter
     @Column(name = "email")
     private String email;
 
+    @Getter
     @Column(name = "password_hash")
     private String passwordHash;
 
+    @Getter
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<ProductPlane> productPlaneSet;
 
+    @Getter
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<Transaction> transactions;
+
+    @Getter
     @OneToMany(mappedBy = "user")
     private List<Token> tokens;
 
+    @Getter
     @Enumerated(EnumType.STRING)
     private Role role;
 
@@ -118,5 +124,16 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public Map<String, Object> getMappedUser() {
+        return new HashMap<>(Map.of(
+                "id", getId(),
+                "givenName", getGivenName(),
+                "familyName", getFamilyName(),
+                "email", getEmail(),
+                "password", getPassword(),
+                "role", getRole()
+        ));
     }
 }

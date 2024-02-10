@@ -2,6 +2,7 @@ package com.example.onlinecashiersystem.rest;
 
 import com.example.onlinecashiersystem.api.UserDto;
 import com.example.onlinecashiersystem.data.model.ProductPlane;
+import com.example.onlinecashiersystem.data.model.Transaction;
 import com.example.onlinecashiersystem.data.model.auth.User;
 import com.example.onlinecashiersystem.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,11 @@ public class UserRestController {
     @GetMapping(path = "/{id}/product-planes")
     public ResponseEntity<Set<ProductPlane>> findProductPlanes(@PathVariable("id") Long id) {
         return ResponseEntity.ok(userService.findProductPlanes(id));
+    }
+
+    @GetMapping(path = "/{id}/transactions")
+    public ResponseEntity<Set<Transaction>> findTransactions(@PathVariable("id") Long id) {
+        return ResponseEntity.ok(userService.findTransactions(id));
     }
 
     @PutMapping(path = "/{id}")

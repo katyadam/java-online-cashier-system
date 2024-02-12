@@ -2,14 +2,18 @@ package com.example.onlinecashiersystem.service.api;
 
 import com.example.onlinecashiersystem.api.UserDto;
 import com.example.onlinecashiersystem.data.model.ProductPlane;
-import com.example.onlinecashiersystem.data.model.User;
+import com.example.onlinecashiersystem.data.model.Transaction;
+import com.example.onlinecashiersystem.data.model.auth.User;
 import com.example.onlinecashiersystem.data.repository.UserRepository;
 import com.example.onlinecashiersystem.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Comparator;
+import java.util.Optional;
 import java.util.Set;
+import java.util.TreeSet;
 
 @Service
 public class UserService {
@@ -28,8 +32,32 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
+    public Optional<User> findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    @Transactional(readOnly = true)
     public Set<ProductPlane> findProductPlanes(Long id) {
         return findById(id).getProductPlaneSet();
+    }
+
+    @Transactional(readOnly = true)
+    public TreeSet<Transaction> findTransactions(Long id) {
+        TreeSet<Transaction> transactions = new TreeSet<>(Comparator.comparing(Transaction::getCreationTime).reversed());
+        transactions.addAll(findById(id).getTransactions());
+        return transactions;
+    }
+
+    @Transactional
+    public User createUser(UserDto userDto) {
+        User user = new User();
+        user.setGivenName(userDto.givenName());
+        user.setFamilyName(user.getFamilyName());
+        user.setEmail(user.getEmail());
+        user.setPasswordHash(userDto.passwordHash());
+
+        userRepository.save(user);
+        return user;
     }
 
     @Transactional
@@ -38,6 +66,7 @@ public class UserService {
         toUpdate.setGivenName(userDto.givenName());
         toUpdate.setFamilyName(userDto.familyName());
         toUpdate.setEmail(userDto.email());
+        toUpdate.setPasswordHash(userDto.passwordHash());
 
         userRepository.save(toUpdate);
         return toUpdate;
@@ -50,5 +79,4 @@ public class UserService {
 
         return toDelete;
     }
-
 }

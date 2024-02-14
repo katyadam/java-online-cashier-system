@@ -1,4 +1,4 @@
-package com.example.onlinecashiersystem.service.dataimport;
+package com.example.onlinecashiersystem.service.dataimport.parser;
 
 import java.util.Collection;
 

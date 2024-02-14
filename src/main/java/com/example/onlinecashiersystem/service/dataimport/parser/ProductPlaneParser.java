@@ -1,4 +1,4 @@
-package com.example.onlinecashiersystem.service.dataimport;
+package com.example.onlinecashiersystem.service.dataimport.parser;
 
 import com.example.onlinecashiersystem.data.model.ProductPlane;
 import org.springframework.stereotype.Component;

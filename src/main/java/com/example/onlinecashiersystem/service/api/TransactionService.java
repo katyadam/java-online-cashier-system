@@ -5,15 +5,12 @@ import com.example.onlinecashiersystem.data.model.Transaction;
 import com.example.onlinecashiersystem.data.repository.TransactionRepository;
 import com.example.onlinecashiersystem.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 public class TransactionService {
@@ -38,6 +35,7 @@ public class TransactionService {
     public Page<Transaction> findAll(Pageable pageable) {
         return transactionRepository.findAll(pageable);
     }
+
     @Transactional
     public Transaction createTransaction(TransactionDto transactionDto) {
         Transaction newTransaction = new Transaction();

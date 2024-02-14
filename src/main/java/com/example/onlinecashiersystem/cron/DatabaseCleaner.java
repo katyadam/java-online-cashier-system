@@ -29,5 +29,4 @@ public class DatabaseCleaner {
         productPlaneService.deleteAllProductPlanes();
         logger.info("All product planes and their products has been deleted!");
     }
-
 }

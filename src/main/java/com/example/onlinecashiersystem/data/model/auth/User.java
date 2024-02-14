@@ -3,7 +3,10 @@ package com.example.onlinecashiersystem.data.model.auth;
 import com.example.onlinecashiersystem.data.model.ProductPlane;
 import com.example.onlinecashiersystem.data.model.Transaction;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

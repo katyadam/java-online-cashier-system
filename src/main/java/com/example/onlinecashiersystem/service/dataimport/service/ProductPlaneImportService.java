@@ -1,7 +1,7 @@
 package com.example.onlinecashiersystem.service.dataimport.service;
 
 import com.example.onlinecashiersystem.data.repository.ProductPlaneRepository;
-import com.example.onlinecashiersystem.service.dataimport.ProductPlaneParser;
+import com.example.onlinecashiersystem.service.dataimport.parser.ProductPlaneParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

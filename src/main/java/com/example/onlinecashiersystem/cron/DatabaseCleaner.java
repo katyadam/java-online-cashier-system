@@ -18,15 +18,15 @@ public class DatabaseCleaner {
         this.productPlaneService = productPlaneService;
     }
 
-    @Scheduled(cron = "0 0 * * * ?", zone = "Europe/Paris") // each minute
-    public void deleteAllTransactions() {
-        transactionService.deleteAllTransactions();
-        logger.info("All transactions has been deleted!");
-    }
-
-    @Scheduled(cron = "0 0 3 * * ?", zone = "Europe/Paris") // every day at 3:00 AM (CET)
-    public void deleteAllProductPlanes() {
-        productPlaneService.deleteAllProductPlanes();
-        logger.info("All product planes and their products has been deleted!");
-    }
+//    @Scheduled(cron = "0 0 * * * ?", zone = "Europe/Paris") // each minute
+//    public void deleteAllTransactions() {
+//        transactionService.deleteAllTransactions();
+//        logger.info("All transactions has been deleted!");
+//    }
+//
+//    @Scheduled(cron = "0 0 3 * * ?", zone = "Europe/Paris") // every day at 3:00 AM (CET)
+//    public void deleteAllProductPlanes() {
+//        productPlaneService.deleteAllProductPlanes();
+//        logger.info("All product planes and their products has been deleted!");
+//    }
 }
